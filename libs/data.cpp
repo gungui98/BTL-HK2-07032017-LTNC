@@ -97,14 +97,14 @@ void userprocess(string mode)
 		notifi("moi nhap ID nguoi dung can xoa:");
 		cin >> userID;
 		if (remove((userdir + userID + ".csv").c_str()) == 0)
-			notifi("da xoa thanh cong sach");
+			notifi("da xoa thanh cong nguoi dung");
 		else
-			notifi("khong the xoa sach,xin vui long thu lai!");
+			notifi("khong the xoa nguoi dung,xin vui long thu lai!");
 	}
 	if (mode == "view")
 	{
 		string userID;
-		notifi("moi nhap ma sach can xem!");
+		notifi("moi nhap ma nguoi dung can xem!");
 		cin >> userID;
 		ifstream file;
 		file.open((userdir + userID + ".csv").c_str(),ios::in);
@@ -151,21 +151,21 @@ void employeeprocess(string mode)
 	}
 	if (mode == "delete")
 	{
-		string employeeID;
+		string employID;
 		notifi("moi nhap ID nhan vien can xoa:");
-		cin >> employeeID;
-		if (remove((employeedir + employeeID + ".csv").c_str()) == 0)
-			notifi("da xoa thanh cong sach");
+		cin >> employID;
+		if (remove((employeedir + employID + ".csv").c_str()) == 0)
+			notifi("da xoa thanh cong nhan vien");
 		else
-			notifi("khong the xoa sach,xin vui long thu lai!");
+			notifi("khong the xoa nhan vien,xin vui long thu lai!");
 	}
 	if (mode == "view")
 	{
-		string employeeID;
+		string employID;
 		notifi("moi nhap ID nhan vien can xem!");
-		cin >> employeeID;
+		cin >> employID;
 		ifstream file;
-		file.open((employeedir + employeeID + ".csv").c_str(),ios::in);
+		file.open((employeedir + employID + ".csv").c_str(),ios::in);
 		string data, messenges[] = { "ID nhan vien:","ten nhan vien:","bo phan lam viec:","email nhan vien:","ngay sinh nhan vien:","dia chi nhan vien:","so dien thoai nhan vien:","gioi tinh:" };
 		for (int i = 0;i < 8;i++)
 		{
