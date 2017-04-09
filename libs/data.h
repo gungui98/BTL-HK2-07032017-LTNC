@@ -7,13 +7,15 @@ typedef struct Session{
     int permission;
     string ID;
 }Session;
+
 typedef struct Borrow
 {
     string borrowID;
+    string bookID;
     string employeeID;
-    unsigned int startDate;
-    unsigned int dueDate;
-    unsigned realDate;
+    string startDate;
+    string dueDate;
+    string realDate;
     string borrowstatus;
 }Borrow;
 typedef struct book
@@ -31,6 +33,7 @@ typedef struct book
 typedef struct Employee
 {
     string employeeID;
+    string password;
     string Name;
     string address;
     string phoneNum;
@@ -48,23 +51,19 @@ typedef struct user
     string dateofbirth;
     int phoneNum;
 }user;
-typedef struct BorrowDetail
-{
-    Borrow borrow;
-    book bookID;
-}BorrowDetail;
+//typedef struct BorrowDetail
+//{
+//    Borrow borrow;
+//    book bookID;
+//}BorrowDetail;
 //data processing
 #define bookdir "data/book/"
 #define userdir "data/user/"
 #define employeedir "data/employee/"
 #define logindir "data/etc/login/"
-//bool savedata();
-//book getbook(string bookID);
-//user getuser(string userID);
-//Employee getemployee(string employeeID);
-//bool removedata(string mode,string ID);
+
 void bookprocess(string mode);
-void userprocess(string mode);
-void employeeprocess(string mode);
+void userprocess(string mode,string sessionID);
+void employeeprocess(string mode,string sessionID);
 
 #endif // DATA_H

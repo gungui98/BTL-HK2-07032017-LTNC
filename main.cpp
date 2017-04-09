@@ -22,19 +22,20 @@ int main()
     while(1)
     {
         greet();
+        session=loginscreen();
         if(session.permission==0)
         {
-            session=loginscreen();
             notifi("xin loi,tai khoan hoac mat khau ban vua nhap khong dung!");
         }
         else
             notifi("dang nhap thanh cong");
         switch(session.permission)
             {
-                case ad: adminscreen();break;
-                case usr: userscreen();break;
-                case emlye: employeescreen();break;
+                case ad: adminscreen(session);break;
+                case usr: userscreen(session);break;
+                case emlye: employeescreen(session);break;
             };
+        logout(&session.permission);
     }
 return 0;
 }

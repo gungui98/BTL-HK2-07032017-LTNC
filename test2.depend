@@ -49,3 +49,62 @@
 	"view.h"
 	<cstdio>
 
+1491732758 source:c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\control.cpp
+	<iostream>
+	<string>
+	<fstream>
+	<windows.h>
+	<cstdlib>
+	"hash.h"
+	"control.h"
+	"data.h"
+	"view.h"
+
+1491460559 c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\hash.h
+	<cstring>
+	<iostream>
+
+1491636858 c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\control.h
+	<string>
+	"data.h"
+
+1491731475 c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\data.h
+	<string>
+
+1490100864 source:c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\hash.cpp
+	"hash.h"
+	<cstdio>
+
+1491722543 source:c:\users\nguyen van phi\btl-hk2-07032017-ltnc\main.cpp
+	<iostream>
+	"libs\view.h"
+	"libs\control.h"
+	"libs\data.h"
+	<windows.h>
+
+1491722543 c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\view.h
+	"data.h"
+
+1491722676 source:c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\data.cpp
+	<iostream>
+	<fstream>
+	<iomanip>
+	<string>
+	<windows.h>
+	"data.h"
+	"control.h"
+	"view.h"
+	"hash.h"
+	<cstdio>
+
+1491723229 source:c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\view.cpp
+	"control.h"
+	"view.h"
+	"data.h"
+	<cstdio>
+	<string.h>
+	<conio.h>
+	<limits.h>
+	<iostream>
+	<windows.h>
+

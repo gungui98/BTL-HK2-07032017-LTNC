@@ -1,10 +1,12 @@
 #include<iostream>
 #include<fstream>
+#include<iomanip>
 #include<string>
 #include<windows.h>
 #include"data.h"
 #include"control.h"
 #include"view.h"
+#include"hash.h"
 #include<cstdio>
 using std::string;
 using namespace std;
@@ -13,20 +15,21 @@ void bookprocess(string mode)
 {
 	book tempbook;
 	greet();
+
 	if (mode == "add" || mode == "edit")
 	{
-	    getline(std::cin,tempbook.Title);//xóa buffer của std::in
-		notifi("moi nhap ten sach:");
-		getline(std::cin,tempbook.Title);
-		notifi("moi nhap ten tac gia:");
-		getline(std::cin,tempbook.author);
-		notifi("moi nhap ID sach:");
-		getline(std::cin,tempbook.bookID);
-		notifi("moi nhap ma ISBN sach:");
-		getline(std::cin,tempbook.ISBN);
-		notifi("moi nhap ten nha xuat ban:");
-		getline(std::cin,tempbook.publisher);
-		notifi("moi nhap so sach:");
+		getline(std::cin, tempbook.Title);//xóa buffer của std::in
+		cout << ("moi nhap ten sach:");
+		getline(std::cin, tempbook.Title);
+		cout << ("moi nhap ten tac gia:");
+		getline(std::cin, tempbook.author);
+		cout << ("moi nhap ID sach:");
+		getline(std::cin, tempbook.bookID);
+		cout << ("moi nhap ma ISBN sach:");
+		getline(std::cin, tempbook.ISBN);
+		cout << ("moi nhap ten nha xuat ban:");
+		getline(std::cin, tempbook.publisher);
+		cout << ("moi nhap so sach:");
 		cin >> tempbook.numOfcopies;
 		if (tempbook.numOfcopies > 0)
 			tempbook.status = "available";
@@ -34,145 +37,287 @@ void bookprocess(string mode)
 		file.open((bookdir + tempbook.bookID + ".csv").c_str());
 		file << tempbook.Title << "," << tempbook.author << "," << tempbook.ISBN << "," << tempbook.publisher << "," << tempbook.numOfcopies;
 		file.close();
+		file.open("data/book/index.csv",std::ios_base::app);
+		file << tempbook.Title << ',' << tempbook.bookID<<endl;
+		file.close();
 		notifi("da thao tac thanh cong!");
 	}
+
 	if (mode == "delete")
 	{
 		string bookID;
-		notifi("moi nhap ma sach can xoa:");
+		cout << ("moi nhap ma sach can xoa:");
 		cin >> bookID;
 		if (remove((bookdir + bookID + ".csv").c_str()) == 0)
 			notifi("da xoa thanh cong sach");
 		else
 			notifi("khong the xoa sach,xin vui long thu lai!");
 	}
+
 	if (mode == "view")
 	{
 		string bookID;
-		notifi("moi nhap ma sach can xem!");
+		cout << ("moi nhap ma sach can xem: ");
 		cin >> bookID;
 		ifstream file;
-		file.open((bookdir + bookID + ".csv").c_str(),ios::in);
-		string data, messenges[] = { "ten sach:","ten tac gia:","ID sach:","ma ISBN sach:","nha xuat ban:","so sach trong kho:" };
+		file.open((bookdir + bookID + ".csv").c_str(), ios::in);
+		string data, messenges[] = { "\nten sach:","ten tac gia:","ID sach:","ma ISBN sach:","nha xuat ban:","\nso sach trong kho:" };
 		for (int i = 0;i < 6;i++)
 		{
 			getline(file, data, ',');
-			notifi(messenges[i]);
-			cout << data<<endl;
+			cout << messenges[i] ;
+			cout << "   " << data << endl;
 		}
+		cout<<'\n';
 		system("pause");
 	}
+
+	if (mode=="search")
+    {
+        string booktitle,temp,ID;
+        cout << "nhap ten sach can tim" <<endl;
+        cin.ignore();
+        getline(std::cin,booktitle);
+        ifstream file;
+        file.open("data/book/index.csv");
+        while(file.good())
+        {
+            getline(file,temp,',');
+            if(temp==booktitle)
+            {
+                getline(file,ID);
+                ifstream file2;
+                file2.open((bookdir +ID + ".csv").c_str(), ios::in);
+                string data, messenges[] = { "\nten sach:","ten tac gia:","ID sach:","ma ISBN sach:","nha xuat ban:","\nso sach trong kho:" };
+                for (int i = 0;i < 6;i++)
+                {
+                    getline(file2, data, ',');
+                    cout << messenges[i] ;
+                    cout << "   " << data << endl;
+                }
+                cout<<'\n';
+                file2.close();
+                system("pause");
+                return;
+            }
+            else
+            {
+                getline(file,temp);
+            };
+        }
+        notifi("khong tim thay sach!");
+    }
 }
 
 
-void userprocess(string mode)
+void userprocess(string mode,string sessionID)
 {
 	user tempUser;
 	greet();
+
 	if (mode == "add" || mode == "edit")
 	{
-	    getline(std::cin,tempUser.ID);//xóa buffer của std::in
-		notifi("moi nhap ID nguoi dung:");
-		getline(std::cin,tempUser.ID);
-		notifi("moi nhap ten nguoi dung:");
-		getline(std::cin,tempUser.name);
-		notifi("moi nhap mat khau nguoi dung:");
-		getline(std::cin,tempUser.password);
-		notifi("moi nhap email nguoi dung:");
-		getline(std::cin,tempUser.email);
-		notifi("moi nhap ngay sinh nguoi dung:");
-		getline(std::cin,tempUser.dateofbirth);
-		notifi("moi nhap so dien thoai nguoi dung:");
+		getline(std::cin, tempUser.ID);//xóa buffer của std::in
+		cout << ("moi nhap ID nhan vien:");
+		getline(std::cin, tempUser.ID);
+		cout << ("moi nhap ten nhan vien:");
+		getline(std::cin, tempUser.name);
+		cout << ("moi nhap mat khau nhan vien:");
+		tempUser.password=inputpassword();
+		cout << ("moi nhap email nhan vien:");
+		getline(std::cin, tempUser.email);
+		cout << ("moi nhap ngay sinh nhan vien:");
+		getline(std::cin, tempUser.dateofbirth);
+		cout << ("moi nhap so dien thoai nhan vien:");
 		cin >> tempUser.phoneNum;
 
-		ofstream file;
+		ofstream file,login;
 		file.open((userdir + tempUser.ID + ".csv").c_str());
-		file << tempUser.ID << "," << tempUser.name << "," << tempUser.password << "," << tempUser.email << "," << tempUser.dateofbirth << "," << tempUser.phoneNum;
+		file << tempUser.ID << "," << tempUser.name << "," << tempUser.email << "," << tempUser.dateofbirth << "," << tempUser.phoneNum;
 		file.close();
+		login.open((logindir+hashing(tempUser.ID)+".csv").c_str());
+		login << hashing(tempUser.password) << " 2";
+		login.close();
+		file.open("data/user/index.csv",std::ios_base::app);
+		file << tempUser.name << ',' << tempUser.ID<<endl;
+		file.close();
+
 		notifi("da thao tac thanh cong!");
 	}
+
 	if (mode == "delete")
 	{
 		string userID;
-		notifi("moi nhap ID nguoi dung can xoa:");
+		cout << ("moi nhap ID nhan vien can xoa:");
 		cin >> userID;
-		if (remove((userdir + userID + ".csv").c_str()) == 0)
-			notifi("da xoa thanh cong nguoi dung");
+		if (remove((logindir + hashing(userID) + ".csv").c_str())*remove((userdir + userID + ".csv").c_str()) == 0)
+
+			notifi("da xoa thanh cong nhan vien");
 		else
-			notifi("khong the xoa nguoi dung,xin vui long thu lai!");
+			notifi("khong the xoa nhan vien,xin vui long thu lai!");
 	}
+
 	if (mode == "view")
 	{
 		string userID;
-		notifi("moi nhap ma nguoi dung can xem!");
+		cout << ("moi nhap ma nhan vien can xem!");
 		cin >> userID;
 		ifstream file;
-		file.open((userdir + userID + ".csv").c_str(),ios::in);
-		string data, messenges[] = { "ID nguoi dung:","ten nguoi dung:","mat khau nguoi dung:","email nguoi dung:","ngay sinh nguoi dung:","so dien thoai nguoi dung:" };
-		for (int i = 0;i < 6;i++)
+		file.open((userdir + userID + ".csv").c_str(), ios::in);
+		string data, messenges[] = { "ID nhan vien:","ten nhan vien:","email nhan vien:","ngay sinh nhan vien:","so dien thoai nhan vien:" };
+		for (int i = 0;i < 5;i++)
 		{
 			getline(file, data, ',');
-			notifi(messenges[i]);
-			cout << data<<endl;
+			cout << messenges[i];
+			cout << "    " << data << endl;
 		}
 		system("pause");
 	}
+
+    if (mode=="search")
+    {
+        string user,temp,ID;
+        cout << "nhap ten nguoi muon can xem" <<endl;
+        cin.ignore();
+        getline(std::cin,user);
+        ifstream file;
+        file.open("data/user/index.csv");
+        while(file.good())
+        {
+            getline(file,temp,',');
+            if(temp==user)
+            {
+                getline(file,ID);
+                ifstream file2;
+                file2.open((userdir + ID + ".csv").c_str(), ios::in);
+                string data, messenges[] = { "ID nhan vien:","ten nhan vien:","email nhan vien:","ngay sinh nhan vien:","so dien thoai nhan vien:" };
+                for (int i = 0;i < 5;i++)
+                {
+                    getline(file2, data, ',');
+                    cout<<messenges[i];
+                    cout <<"    "<< data << endl;
+                }
+                file2.close();
+                system("pause");
+                return;
+            }
+            else
+            {
+                getline(file,temp);
+            };
+        }
+        file.close();
+        notifi("khong tim thay nhan vien!");
+    }
 }
 
-void employeeprocess(string mode)
+void employeeprocess(string mode,string sessionID)
 {
 	employee tempE;
 	greet();
 	if (mode == "add" || mode == "edit")
 	{
-	    getline(std::cin,tempE.employeeID);//xóa buffer của std::in
-		notifi("moi nhap ID nhan vien:");
-		getline(std::cin,tempE.employeeID);
-		notifi("moi nhap ten nhan vien:");
-		getline(std::cin,tempE.Name);
-		notifi("moi nhap bo phan lam viec nhan vien:");
-		getline(std::cin,tempE.Department);
-		notifi("moi nhap email nhan vien:");
-		getline(std::cin,tempE.email);
-		notifi("moi nhap ngay sinh nhan vien:");
-		getline(std::cin,tempE.dateofbirth);
-		notifi("moi nhap dia chi nhan vien:");
-		getline(std::cin,tempE.address);
-		notifi("moi nhap so dien thoai nhan vien:");
-		getline(std::cin,tempE.phoneNum);
-		notifi("moi nhap gioi tinh nhan vien:");
-		getline(std::cin,tempE.gender);
+		getline(std::cin, tempE.employeeID);//xóa buffer của std::in
+		cout << ("moi nhap ID nguoi muon :");
+		getline(std::cin, tempE.employeeID);
+		cout << ("moi nhap mat khau: ");
+		tempE.password=inputpassword();
+		cout << ("moi nhap ten nguoi muon: ");
+		getline(std::cin, tempE.Name);
+		cout << ("moi nhap bo phan lam viec nguoi muon :");
+		getline(std::cin, tempE.Department);
+		cout << ("moi nhap email nguoi muon: ");
+		getline(std::cin, tempE.email);
+		cout << ("moi nhap ngay sinh nguoi muon: ");
+		getline(std::cin, tempE.dateofbirth);
+		cout << ("moi nhap dia chi nguoi muon: ");
+		getline(std::cin, tempE.address);
+		cout << ("moi nhap so dien thoai nguoi muon: ");
+		getline(std::cin, tempE.phoneNum);
+		cout << ("moi nhap gioi tinh nguoi muon: ");
+		getline(std::cin, tempE.gender);
 
-		ofstream file;
+		ofstream file,login;
 		file.open((employeedir + tempE.employeeID + ".csv").c_str());
 		file << tempE.employeeID << "," << tempE.Name << "," << tempE.Department << "," << tempE.email << "," << tempE.dateofbirth << "," << tempE.address << "," << tempE.phoneNum << "," << tempE.gender;
+		login.open((logindir+hashing(tempE.employeeID)+".csv").c_str());
+		login << hashing(tempE.password) << " 3";
+		login.close();
+		file.close();
+		file.open("data/employee/index.csv",std::ios_base::app);
+		file << tempE.Name << ',' << tempE.employeeID<<endl;
 		file.close();
 		notifi("da thao tac thanh cong!");
 	}
+
 	if (mode == "delete")
 	{
 		string employID;
-		notifi("moi nhap ID nhan vien can xoa:");
+		cout << ("moi nhap ID nguoi muon can xoa:");
 		cin >> employID;
-		if (remove((employeedir + employID + ".csv").c_str()) == 0)
-			notifi("da xoa thanh cong nhan vien");
+		if (remove((employeedir + employID + ".csv").c_str()) == 0&&remove((logindir + hashing(employID) + ".csv").c_str()) == 0)
+			notifi("da xoa thanh cong nguoi muon");
 		else
-			notifi("khong the xoa nhan vien,xin vui long thu lai!");
+			notifi("khong the xoa nguoi muon,xin vui long thu lai!");
 	}
+
 	if (mode == "view")
 	{
 		string employID;
-		notifi("moi nhap ID nhan vien can xem!");
-		cin >> employID;
+		if(sessionID=="")
+        {
+            cout << ("moi nhap ID nguoi muon can xem!");
+            cin >> employID;
+        }
+        else
+        {
+            employID=sessionID;
+        }
 		ifstream file;
-		file.open((employeedir + employID + ".csv").c_str(),ios::in);
-		string data, messenges[] = { "ID nhan vien:","ten nhan vien:","bo phan lam viec:","email nhan vien:","ngay sinh nhan vien:","dia chi nhan vien:","so dien thoai nhan vien:","gioi tinh:" };
+		file.open((employeedir + employID + ".csv").c_str(), ios::in);
+		string data, messenges[] = { "ID nguoi muon:","ten nguoi muon:","bo phan lam viec:","email nguoi muon:","ngay sinh nguoi muon:","dia chi nguoi muon:","so dien thoai nguoi muon:","gioi tinh:" };
 		for (int i = 0;i < 8;i++)
 		{
 			getline(file, data, ',');
-			notifi(messenges[i]);
-			cout << data<<endl;
+			cout<<messenges[i];
+			cout <<"    "<< data << endl;
 		}
 		system("pause");
 	}
+
+    if (mode=="search")
+    {
+        string employee,temp,ID;
+        cout << "nhap ten nguoi muon can xem" <<endl;
+        cin.ignore();
+        getline(std::cin,employee);
+        ifstream file;
+        file.open("data/employee/index.csv");
+        while(file.good())
+        {
+            getline(file,temp,',');
+            if(temp==employee)
+            {
+                getline(file,ID);
+                ifstream file2;
+                file2.open((employeedir + ID + ".csv").c_str(), ios::in);
+                string data, messenges[] = { "ID nguoi muon:","ten nguoi muon:","bo phan lam viec:","email nguoi muon:","ngay sinh nguoi muon:","dia chi nguoi muon:","so dien thoai nguoi muon:","gioi tinh:" };
+                for (int i = 0;i < 8;i++)
+                {
+                    getline(file2, data, ',');
+                    cout<<messenges[i];
+                    cout <<"    "<< data << endl;
+                }
+                file2.close();
+                system("pause");
+                return;
+            }
+            else
+            {
+                getline(file,temp);
+            };
+        }
+        file.close();
+        notifi("khong tim thay nguoi muon!");
+    }
 }

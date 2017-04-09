@@ -5,5 +5,6 @@
 using std::string;
 Session checkuser(string username,string password);
 void logout(int* session);
-
+void checkin();
+void checkout();
 #endif // CONTROL_H

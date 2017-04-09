@@ -4,9 +4,9 @@
 void greet();
 Session loginscreen();
 void notifi(string messenge);
-void adminscreen();
-void userscreen();
-void employeescreen();
-
+void adminscreen(Session session);
+void userscreen(Session session);
+void employeescreen(Session session);
+string inputpassword();
 
 #endif //VIEW_H

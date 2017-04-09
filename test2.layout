@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="libs\control.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="640" topLine="16" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="-4" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="770" topLine="17" />
-		</Cursor>
-	</File>
 	<File name="libs\control.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="163" topLine="0" />
+			<Cursor1 position="231" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="libs\data.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="226" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="libs\hash.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-7" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1135" topLine="234" />
+		</Cursor>
+	</File>
+	<File name="libs\data.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="-10" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8021" topLine="219" />
+		</Cursor>
+	</File>
+	<File name="libs\view.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-10" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4696" topLine="120" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="-10" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="703" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="libs\view.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="183" topLine="0" />
+			<Cursor1 position="219" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="libs\data.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-10" zoom_2="0">
+	<File name="libs\control.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-8" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1460" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="libs\hash.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="libs\data.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1459" topLine="56" />
-		</Cursor>
-	</File>
-	<File name="libs\view.cpp" open="1" top="1" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="267" topLine="6" />
+			<Cursor1 position="2942" topLine="108" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
