@@ -49,7 +49,7 @@
 	"view.h"
 	<cstdio>
 
-1491732758 source:c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\control.cpp
+1491733508 source:c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\control.cpp
 	<iostream>
 	<string>
 	<fstream>
@@ -85,7 +85,7 @@
 1491722543 c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\view.h
 	"data.h"
 
-1491722676 source:c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\data.cpp
+1491803048 source:c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\data.cpp
 	<iostream>
 	<fstream>
 	<iomanip>
@@ -97,7 +97,7 @@
 	"hash.h"
 	<cstdio>
 
-1491723229 source:c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\view.cpp
+1491802655 source:c:\users\nguyen van phi\btl-hk2-07032017-ltnc\libs\view.cpp
 	"control.h"
 	"view.h"
 	"data.h"

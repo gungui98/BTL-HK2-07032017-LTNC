@@ -61,6 +61,11 @@ void bookprocess(string mode)
 		cin >> bookID;
 		ifstream file;
 		file.open((bookdir + bookID + ".csv").c_str(), ios::in);
+		if(!file.good())
+        {
+            notifi("khong tim thay thong tin!");
+            return;
+        }
 		string data, messenges[] = { "\nten sach:","ten tac gia:","ID sach:","ma ISBN sach:","nha xuat ban:","\nso sach trong kho:" };
 		for (int i = 0;i < 6;i++)
 		{
@@ -88,6 +93,11 @@ void bookprocess(string mode)
                 getline(file,ID);
                 ifstream file2;
                 file2.open((bookdir +ID + ".csv").c_str(), ios::in);
+                if(!file2.good())
+                {
+                    notifi("khong tim thay thong tin!");
+                    return;
+                }
                 string data, messenges[] = { "\nten sach:","ten tac gia:","ID sach:","ma ISBN sach:","nha xuat ban:","\nso sach trong kho:" };
                 for (int i = 0;i < 6;i++)
                 {
@@ -164,6 +174,11 @@ void userprocess(string mode,string sessionID)
 		cin >> userID;
 		ifstream file;
 		file.open((userdir + userID + ".csv").c_str(), ios::in);
+		if(!file.good())
+        {
+            notifi("khong tim thay thong tin!");
+            return;
+        }
 		string data, messenges[] = { "ID nhan vien:","ten nhan vien:","email nhan vien:","ngay sinh nhan vien:","so dien thoai nhan vien:" };
 		for (int i = 0;i < 5;i++)
 		{
@@ -190,6 +205,11 @@ void userprocess(string mode,string sessionID)
                 getline(file,ID);
                 ifstream file2;
                 file2.open((userdir + ID + ".csv").c_str(), ios::in);
+                if(!file2.good())
+                {
+                    notifi("khong tim thay thong tin!");
+                    return;
+                }
                 string data, messenges[] = { "ID nhan vien:","ten nhan vien:","email nhan vien:","ngay sinh nhan vien:","so dien thoai nhan vien:" };
                 for (int i = 0;i < 5;i++)
                 {
@@ -266,7 +286,7 @@ void employeeprocess(string mode,string sessionID)
 		string employID;
 		if(sessionID=="")
         {
-            cout << ("moi nhap ID nguoi muon can xem!");
+            cout << ("moi nhap ID nguoi muon can xem: ");
             cin >> employID;
         }
         else
@@ -275,6 +295,11 @@ void employeeprocess(string mode,string sessionID)
         }
 		ifstream file;
 		file.open((employeedir + employID + ".csv").c_str(), ios::in);
+		if(!file.good())
+        {
+            notifi("khong tim thay thong tin!");
+            return;
+        }
 		string data, messenges[] = { "ID nguoi muon:","ten nguoi muon:","bo phan lam viec:","email nguoi muon:","ngay sinh nguoi muon:","dia chi nguoi muon:","so dien thoai nguoi muon:","gioi tinh:" };
 		for (int i = 0;i < 8;i++)
 		{
@@ -301,6 +326,11 @@ void employeeprocess(string mode,string sessionID)
                 getline(file,ID);
                 ifstream file2;
                 file2.open((employeedir + ID + ".csv").c_str(), ios::in);
+                if(!file2.good())
+                {
+                    notifi("khong tim thay thong tin!");
+                    return;
+                }
                 string data, messenges[] = { "ID nguoi muon:","ten nguoi muon:","bo phan lam viec:","email nguoi muon:","ngay sinh nguoi muon:","dia chi nguoi muon:","so dien thoai nguoi muon:","gioi tinh:" };
                 for (int i = 0;i < 8;i++)
                 {

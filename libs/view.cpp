@@ -61,19 +61,20 @@ void adminscreen(Session session)
 
     cout << "1,xem sach"<<endl;
     cout << "2,them,sua sach"<<endl;
-    cout << "3,tim sach\n"<<endl;
+    cout << "3,tim sach"<<endl;
+    cout << "4,xoa sach\n"<<endl;
 
-    cout << "4,xem thong tin nguoi muon"<<endl;
-    cout << "5,tim thong tin nguoi muon"<<endl;
-    cout << "6,them,sua thong tin nguoi muon"<<endl;
-    cout << "7,xoa thong tin nguoi muon\n"<<endl;
+    cout << "5,xem thong tin nguoi muon"<<endl;
+    cout << "6,tim thong tin nguoi muon"<<endl;
+    cout << "7,them,sua thong tin nguoi muon"<<endl;
+    cout << "8,xoa thong tin nguoi muon\n"<<endl;
 
-    cout << "8,xem thong tin nhan vien"<<endl;
-    cout << "9,tim thong tin nhan vien"<<endl;
-    cout << "10,them,sua thong tin nhan vien"<<endl;
-    cout << "11,xoa thong tin nhan vien\n"<<endl;
+    cout << "9,xem thong tin nhan vien"<<endl;
+    cout << "10,tim thong tin nhan vien"<<endl;
+    cout << "11,them,sua thong tin nhan vien"<<endl;
+    cout << "12,xoa thong tin nhan vien\n"<<endl;
 
-    cout << "12,dang xuat"<<endl;
+    cout << "13,dang xuat"<<endl;
     cin.clear();
     cin.ignore(6400,'\n');
     cin >> mode;
@@ -82,18 +83,19 @@ void adminscreen(Session session)
         case 1: bookprocess("view");break;
         case 2: bookprocess("edit");break;
         case 3: bookprocess("search");break;
+        case 4: bookprocess("delete");break;
 
-        case 4: employeeprocess("view","");break;
-        case 5: employeeprocess("search","");break;
-        case 6: employeeprocess("add","");break;
-        case 7: employeeprocess("delete","");break;
+        case 5: employeeprocess("view","");break;
+        case 6: employeeprocess("search","");break;
+        case 7: employeeprocess("add","");break;
+        case 8: employeeprocess("delete","");break;
 
-        case 8: userprocess("view","");break;
-        case 9: userprocess("search","");break;
-        case 10: userprocess("add","");break;
-        case 11: userprocess("delete","");break;
+        case 9: userprocess("view","");break;
+        case 10: userprocess("search","");break;
+        case 11: userprocess("add","");break;
+        case 12: userprocess("delete","");break;
 
-        case 12: return;
+        case 13: return;
         default: notifi("nhap sai chuc nang,moi ban nhap lai");break;
     };
     adminscreen(session);
@@ -101,8 +103,7 @@ void adminscreen(Session session)
 void userscreen(Session session)
 {
     int mode;
-    //hiện thị ID chức danh
-    //giao diện cho admin,cho tùy chọn tìm sách
+    //giao diện cho user,cho tùy chọn tìm sách
     system("cls");
     greet();
     cout << "                WELCOME USER" << endl;
@@ -110,13 +111,18 @@ void userscreen(Session session)
     cout << "Moi ban lua chon tinh nang can xu ly: "<< endl;
     cout << "1,xem sach"<<endl;
     cout << "2,them,sua sach"<<endl;
-    cout << "3,tim sach\n"<<endl;
-    cout << "4,nhan tra sach"<<endl;
-    cout << "5,cho muon sach\n"<<endl;
-    cout << "6,xem thong tin nguoi muon"<<endl;
-    cout << "7,them,sua thong tin nguoi muon"<<endl;
-    cout << "8,xoa thong tin nguoi muon\n"<<endl;
-    cout << "9,dang xuat"<<endl;
+    cout << "3,tim sach"<<endl;
+    cout << "4,xoa sach\n"<<endl;
+
+    cout << "5,nhan tra sach"<<endl;
+    cout << "6,cho muon sach\n"<<endl;
+
+    cout << "7,tim thong tin nguoi muon"<<endl;
+    cout << "8,xem thong tin nguoi muon"<<endl;
+    cout << "9,them,sua thong tin nguoi muon"<<endl;
+    cout << "10,xoa thong tin nguoi muon\n"<<endl;
+
+    cout << "11,dang xuat"<<endl;
     cin.clear();
     cin.ignore(6400,'\n');
     cin >> mode;
@@ -125,14 +131,16 @@ void userscreen(Session session)
         case 1: bookprocess("view");break;
         case 2: bookprocess("edit");break;
         case 3: bookprocess("search");break;
+        case 4: bookprocess("delete");break;
 
-        case 4: checkout();break;
-        case 5: checkin();break;
+        case 5: checkout();break;
+        case 6: checkin();break;
 
-        case 6: employeeprocess("view","");break;
-        case 7: employeeprocess("edit","");break;
-        case 8: employeeprocess("delete","");break;
-        case 9: return;
+        case 7: employeeprocess("search","");break;
+        case 8: employeeprocess("view","");break;
+        case 9: employeeprocess("edit","");break;
+        case 10: employeeprocess("delete","");break;
+        case 11: return;
         default : notifi("nhap sai chuc nang,moi ban nhap lai");break;
     };
     userscreen(session);
@@ -141,7 +149,7 @@ void employeescreen(Session session)
 {
 	int mode;
     //hiện thị ID chức danh
-    //giao diện cho admin,cho tùy chọn thêm/xóa/sửa/tìm sách user
+    //giao diện cho employee,cho tùy chọn chức năng
     system("cls");
     greet();
     cout << "                WELCOME EMPLOYEE" << endl;
