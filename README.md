@@ -3,7 +3,14 @@ bài tập lớn môn LTNC
 
 UPDATE 
 
-ALL DONE!
+add comments and TODO 
 
 KNOWN BUGS
-stack overflow
+
+stack overflow may occur in view function
+
+escapse function sometime not work properly
+
+IMPROVEMENT
+
+merge login csv file into single file.
