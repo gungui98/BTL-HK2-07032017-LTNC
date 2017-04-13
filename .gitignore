@@ -27,5 +27,10 @@
 *.exe
 *.out
 *.app
+
 # Saved Test Files
-*.csv
+
+data/book/*.csv
+data/employee/*.csv
+data/user/*.csv
+data/ect/borrow/*.csv
