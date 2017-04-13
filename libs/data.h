@@ -27,7 +27,6 @@ typedef struct book
     string author;
     string publisher;
     string nextbook;
-    string status;
 }book;
 //employee
 typedef struct Employee
@@ -51,16 +50,15 @@ typedef struct user
     string dateofbirth;
     int phoneNum;
 }user;
-//typedef struct BorrowDetail
-//{
-//    Borrow borrow;
-//    book bookID;
-//}BorrowDetail;
-//data processing
+
+//data directory
+
 #define bookdir "data/book/"
 #define userdir "data/user/"
 #define employeedir "data/employee/"
 #define logindir "data/etc/login/"
+
+//process
 
 void bookprocess(string mode);
 void userprocess(string mode,string sessionID);

@@ -51,7 +51,7 @@ string inputpassword()
 void adminscreen(Session session)
 {
    int mode;
-    //hiện thị ID chức danh
+    //hiện thị chức danh
     //giao diện cho admin,cho tùy chọn tìm sách
     system("cls");
     greet();
@@ -103,7 +103,8 @@ void adminscreen(Session session)
 void userscreen(Session session)
 {
     int mode;
-    //giao diện cho user,cho tùy chọn tìm sách
+    //hiển thị chức danh
+    //giao diện cho user,cho tùy chọn chức năng
     system("cls");
     greet();
     cout << "                WELCOME USER" << endl;
@@ -148,7 +149,7 @@ void userscreen(Session session)
 void employeescreen(Session session)
 {
 	int mode;
-    //hiện thị ID chức danh
+    //hiện thị chức danh
     //giao diện cho employee,cho tùy chọn chức năng
     system("cls");
     greet();

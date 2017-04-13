@@ -7,6 +7,9 @@
 #include"control.h"
 #include"data.h"
 #include"view.h"
+
+#define booknum_location 4
+
 using std::string;
 using namespace std;
 Session checkuser(string username,string password)
@@ -44,7 +47,7 @@ void checkout()
 
     cout << "nhap ID sach da muon :";
     cin >> tempbr.borrowID;
-
+    //input data
     fstream file;
     file.open(("data/etc/borrow/"+tempbr.borrowID+".csv").c_str(),std::ios_base::in);
     getline(file,tempbr.bookID,',');
@@ -57,22 +60,31 @@ void checkout()
     tempbr.borrowstatus="returned";
     file.close();
 
+    //write borrow data
+
     file.open(("data/etc/borrow/"+tempbr.borrowID+".csv").c_str(),std::ios_base::out);
     file<<tempbr.bookID<<','<<tempbr.employeeID<<','<<tempbr.startDate<<','<<tempbr.dueDate<<','<<tempbr.realDate<<tempbr.borrowstatus;
     file.close();
 
+    //get book number to update
+
     file.open((bookdir+tempbr.bookID+".csv").c_str(),std::ios_base::in);
-    for(int i=0;i<4;i++)
+    for(int i=0;i<booknum_location;i++)
     {
         getline(file,temp,',');
         line+=temp;
         line+=',';
     }
+
+    //update
+
     file>>numofcopy;
     numofcopy++;
     itoa(numofcopy,c,10);
     line+=c;
     file.close();
+
+    //rewrite data
 
     file.open((bookdir+tempbr.bookID+".csv").c_str(),std::ios_base::out);
     file<<line;
@@ -109,7 +121,7 @@ void checkin()
         notifi("khong ton tai sach");
         return;
     };
-    for(int i=0;i<4;i++)
+    for(int i=0;i<booknum_location;i++)
     {
         getline(file,temp,',');
         line+=temp;
